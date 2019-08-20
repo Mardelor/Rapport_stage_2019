@@ -1,0 +1,94 @@
+\documentclass[11pt, oneside, a4paper, titlepage, french]{article}
+\usepackage[T1]{fontenc}     % Support des césures comportant des accents
+\usepackage{calc}            % Manipulation facile des tailles
+\usepackage{graphicx}        % Figures basiques
+\usepackage{lmodern}         % Meilleure police
+\usepackage[utf8]{inputenc}  % Support de l'encodage utf-8
+\usepackage{fancyvrb}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{svg}
+\usepackage{float}
+\usepackage[french]{babel}
+\usepackage{listings}
+\selectlanguage{french}
+
+\newcommand{\imagepath}{logos/}
+\newcommand{\createimagepath}[1]{\imagepath#1}
+
+\topmargin      -10mm
+\textheight     224mm
+\footskip       20mm
+\hoffset        -10mm
+\textwidth      146mm
+\hypersetup{
+    colorlinks = true,
+    linkcolor = blue,
+    urlcolor = cyan
+}
+
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  showstringspaces=false,
+  commentstyle=\color{gray}\upshape
+}
+
+\begin{document}
+%----------------------------------------------------------------------------------%
+
+%--- page de garde ---%
+\begin{titlepage}
+\include{garde}
+\end{titlepage}
+
+%--- blanc ---%
+\thispagestyle{empty}
+\newpage
+%----------------------------------------------------------------------------------%
+
+%--- résumé & abstract ---%
+\section*{Résumé}
+\newpage
+
+\section*{Abstract}
+\newpage
+
+%--- remerciements ---%
+\section*{Remerciements}
+\newpage
+
+%--- table des matières ---%
+\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------------%
+
+%--- introduction ---%
+\section*{Introduction}
+Ce stage a été proposé par M. Franck Cotton, conseiller scientifique de la Direction du Système d'Information de l'Insee. Le but est d'expérimenter sur les méthodes de traitement du langage naturel, et plus spécifiquement sur la reconnaissance d'entités nommées dans les publications de l'Insee. Une entités nommée peut désigner une organisation, un lieux, une date ou encore une personne. La finalité est d'en augmenter la qualité, par l'insertion automatique le liens vers les définitions des entités par exemple. Avec l'utilisation récente des réseaux de neurones dans le traitement du langage naturel, ce domaine a beaucoup évolué. Les traitements sont de plus en plus performants et proposent davantage de fonctionnalités. Ce projet est l'occasion de mettre en application ces nouvelles technologies du traitement du langage naturel, en construisant un premier service de reconnaissance d'entités nommées. Ce service devra être capable de reconnaître, dans les publications de l'Insee, des concepts généraux tels que des dates ou des lieux, mais aussi les concepts statistiques de l'Insee.
+\newline
+
+Après une définition du projet et de l'environnement de travail, nous décrirons les enjeux de l'utilisation du traitement du langage naturel à l'Insee. Nous présenterons ensuite le détail du développement d'un premier service, avant d'en faire le bilan.
+\newpage
+
+\input{part-1.tex}
+\newpage
+\input{part-2.tex}
+\newpage
+\input{part-3.tex}
+\newpage
+\input{part-4.tex}
+\newpage
+
+%--- conclusion ---%
+\section*{Conclusion}
+\newpage
+
+%----------------------------------------------------------------------------------%
+
+%--- annexes ---%
+\section*{Annexes}
+
+\end{document}
