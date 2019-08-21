@@ -110,14 +110,14 @@ Si ce projet est réalisé par moi-même sur le plan technique, je suis accompag
 \subsection{Le cadre du projet}
 
 \subsubsection{Le référentiel des métadonnées statistiques}
-Parmi les entités nommées à reconnaître dans les publications figurent des concepts statistiques. Ces concepts sont référencés dans le Référentiel des Métadonnées Statistiques (RMéS) de l'Insee, disponible sur le site \href{http://rdf.insee.fr/sparql}{rdf.insee.fr} en format RDF. Les concepts y sont décris à l'aide de plusieurs champs~: libellé, libellé alternatif, le plus souvent un acronyme, définitions et notes permettent de les identifier. Des liens sémantiques entre concepts enrichissent également la sémantique des concepts.
+Parmi les entités nommées à reconnaître dans les publications figurent des concepts statistiques. Ces concepts sont référencés dans le Référentiel des Métadonnées Statistiques (RMéS) de l'Insee, disponible sur le site \href{http://rdf.insee.fr/sparql}{rdf.insee.fr} \cite{rdf.insee.fr} au format RDF. Les concepts y sont décris à l'aide de plusieurs champs~: libellé, libellé alternatif, le plus souvent un acronyme, définitions et notes permettent de les identifier. Des liens sémantiques entre concepts enrichissent également la sémantique des concepts.
 \newline
 
 Afin d'avoir une meilleure vision de ce que doit être une telle base, et à la demande de Franck, j'ai effectué une comparaison avec différentes bases de concepts au format rdf également~: 
 \begin{itemize}
-    \item Le thesaurus de l'\href{http://vocabularies.unesco.org/browser/thesaurus/en/?clang=fr}{Unesco}
-    \item Le base de la \href{https://data.bnf.fr/current/sparql.html}{Bibliothèque nationale de France}
-    \item La base de concepts d'\href{https://pro.europeana.eu/page/linked-open-data}{Europeana}
+    \item Le thesaurus de l'\href{http://vocabularies.unesco.org/browser/thesaurus/en/?clang=fr}{Unesco} \cite{unesco}
+    \item Le base de la \href{https://data.bnf.fr/current/sparql.html}{Bibliothèque nationale de France} \cite{bnf}
+    \item La base de concepts d'\href{https://pro.europeana.eu/page/linked-open-data}{Europeana} \cite{europeana-rdf}
     \newline
 \end{itemize}
 
@@ -126,7 +126,7 @@ Plusieurs particularités sont à noter~: tout d'abord, les concepts statistique
 De plus, les liens entre les concepts sont nombreux, mais peu variés dans le référentiel de l'Insee, là où ils sont plus rare mais aussi plus variés dans les thesauri de la BnF et d'Europeana. Globalement, la base n'est pas hiérarchisée et les concepts apparaissent «~à plat~».
 \newline
 
-À la demande de mon tuteur, j'effectue quelques tentatives pour hiérarchiser la base. Une base hiérarchisée pourrait en effet faciliter la reconnaissance d'entités nommées, en faisant une exploration de graphe à partir des concepts dont on trouve le libellé exact dans la publication par exemple. Cela est également l'occasion pour moi de découvrir l'un des outils utilisés dans le traitement du langage naturel~: \href{https://spacy.io/}{SpaCy}.
+À la demande de mon tuteur, j'effectue quelques tentatives pour hiérarchiser la base. Une base hiérarchisée pourrait en effet faciliter la reconnaissance d'entités nommées, en faisant une exploration de graphe à partir des concepts dont on trouve le libellé exact dans la publication par exemple. Cela est également l'occasion pour moi de découvrir l'un des outils utilisés dans le traitement du langage naturel~: \href{https://spacy.io/}{SpaCy} \cite{spacy2}.
 \label{section 1.2.1}
 
 \subsubsection*{Premières tentatives}
@@ -152,7 +152,7 @@ Le but principal du stage n'est pas d'améliorer la base RMéS. C'est pourquoi j
 
 \subsubsection{Les publications du site insee.fr}
 
-L'objectif principal du projet est d'améliorer la qualité des publications de l'Insee. Ces publications sont diffusées sur le site \href{https://insee.fr/fr/accueil}{insee.fr}, récemment rénové et aujourd'hui maintenu par l'équipe Web4G.
+L'objectif principal du projet est d'améliorer la qualité des publications de l'Insee. Ces publications sont diffusées sur le site \href{https://insee.fr/fr/accueil}{insee.fr} \cite{insee.fr}, récemment rénové et aujourd'hui maintenu par l'équipe Web4G.
 \newline
 
 \begin{figure}[H]

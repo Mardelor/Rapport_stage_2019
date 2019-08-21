@@ -1,15 +1,44 @@
 \section{Bilan \& perspectives}
 Ce projet a finalement abouti à l'élaboration de deux services de reconnaissance d'entités nommées~: un premier prototype fonctionnel, et un second service, plus industriel. Ils montrent tout deux des résultats encourageants, et qui servira tant aux rédacteurs des publications qu'à l'équipe en charge du référentiel des métadonnés statistiques. Cela m'a de plus permis de préciser mon projet professionnel, en explorant à la fois les thématiques de traitements de langages naturels, de développement web et la thématique DevOps.
 
-\subsection{Le livrables et les résultats actuelles}
+\subsection{Le livrables et les résultats actuels}
+Les livrables du projet, disponibles sur \href{https://github.com/Mardelor?tab=repositories}{Github}, sont au nombre de trois~: les deux services de REN et ce présent rapport.
+\newline
 
+Le premier service permet à ce jour de repérer les concepts de la base RMéS, et de générer un rendu XML et un rendu HTML d'une même publication. Un pipeline GitLab permet déjà de tester automatiquement le programme sur n'importe quelle publication figurant dans la base de données au format XML. Il donne une bonne vision de ce que l'on peut faire en TLN sur les publications de l'Insee, même s'il a quelques lacunes.
+\newline
 
-\subsection{Apport dans mon projet professionnel}
+Une analyse du programme sur environ 650 publications, dont chacune fait trois à quatre pages a été menée. Il s'agit de rechercher quels concepts sont repérés dans le corpus, sous quelles formes et à quelle fréquence. On constate que la moitié des concepts est repérée sur les 1162 qui sont présents dans la base RMéS. Pour une majorité d'entre eux, ils ne sont trouvés moins de dix fois dans le corpus. Pour les concepts généraux en revanche, comme «~salaire~», «~commerce~» ou «~productivité~», on retrouve plusieurs formes et avec un nombre d'occurrences allant de quelques dizaines à quelques centaines.
 
-\subsubsection{La vision apportée vis-à-vis de mon projet professionnel}
-Travailler dans une grande entreprise, avec de l'agilité
+Il est difficile de déterminer si les concepts qui n'apparaissent pas ne sont tout simplement pas mentionnés ou si cela est dû aux lacunes du pipeline. Ce que l'on peut en conclure en revanche, c'est que les concepts généraux sont cités avec des formes diverses. Cela pointe le fait que certains concepts mériteraient peut-être d'avoir des sous-concepts, plus spécifiques.
+\newline
 
-\subsubsection{Les compétences apportées}
-DevOps ! Docker, Gitlab-CI, Framework de dev (Flask, Javalin, React,...)
+Le second service est plus aboutit~: construit pour pouvoir être utilisé sur le Web, il ne permet cependant pas, à l'heure actuelle, d'effectuer les tests sur les publications. Il dispose en revanche d'une interface pour soumettre du texte au pipeline, et ainsi rapidement vérifier si un concept est reconnus dans un certain contexte. Cette interface inclus également l'affichage des dépendances, permettant de résoudre les dysfonctionnements plus rapidement. Il est également adressable en HTTP et peut fournir le résultat du pipeline en JSON. Je n'ai malheuresement pas eu le temps de mettre en place un pipeline GitLab. J'ai cependant créer une image Docker sur laquelle l'application peut s'exécuter.
+\newline
+
+Bien que je n'ai pas pu finaliser la seconde application, j'ai pris soin de laisser une documentation, afin d'autres puissent faire aboutir le second service. 
 
 \subsection{Perspectives d'amélioration}
+
+Faire un client Java XSLT pour tester le pipeline SpaCy et ainsi comparer les résultats + réaliser l'interface utilisateur pour améliorer base RMéS \& se constituer une base d'apprentissage + finition de l'intégration sur la plateforme Innovation + amélioration du pipeline Java via le pipeline SpaCy + Exploration d'une méthode à base de \textit{Dependencies}.
+
+\subsection{Apport dans mon projet professionnel}
+\subsubsection{La vision apportée vis-à-vis de mon projet professionnel}
+Travailler dans une grande entreprise, avec de l'agilité + difficulté de gérer la mission qui m'a été confiée tout en étant dans une équipe et en participant à leurs activités.
+
+Travailler avec la DIIT et Franck Cotton pendant ces six mois a été très enrichissant pour moi. Cela m'a fait réfléchir sur le contexte dans lequel je veux travailler, ma relation avec les autres, et les sujets sur lesquelles j'aimerai travailler.
+\newline
+
+Le stage m'a tout d'abord apporté une confiance en moi. Être accueillit dans une structure de plus de 6000 agents a d'abord été intimidant. 
+TODO : compléter avec équipe DIIT agile = stimulant + thématiques récentes + assez libre
+Mais difficulté de faire partie de cette équipe tout en poursuivant ma propre mission. Difficultés à ce placer : aller voir les bonnes personnes, mais on m'a aidé et maintenant confiance ! poceblo
+\newline
+
+Vis-à-vis de ce que je veux faire, occasion de discuter avec pas mal de monde + mettre en pratique un certain nombre de compétences.
+
+\subsubsection{Les compétences apportées}
+DevOps ! Docker, Gitlab-CI, Framework de dev (Flask, Javalin, React,...) -> A la fois Ops et Data
+
+Conclure sur le fait qu'aujourd'hui thèse CIFRE m'intéresse, car travailler sur des sujets récents en équipe est vraiment stimulant, ou équipe R\&D.
+
+\subsubsection*{Conclusion}
