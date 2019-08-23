@@ -12,6 +12,7 @@
 \usepackage{float}
 \usepackage[french]{babel}
 \usepackage{listings}
+\usepackage{array}
 \selectlanguage{french}
 
 \newcommand{\imagepath}{logos/}
@@ -35,6 +36,33 @@
   commentstyle=\color{gray}\upshape
 }
 
+\lstset{%
+    inputencoding=utf8,
+    extendedchars=true,
+    literate=%
+    {é}{{\'e}}{1}%
+    {è}{{\`e}}{1}%
+    {à}{{\`a}}{1}%
+    {ç}{{\c{c}}}{1}%
+    {œ}{{\oe}}{1}%
+    {ù}{{\`u}}{1}%
+    {É}{{\'E}}{1}%
+    {È}{{\`E}}{1}%
+    {À}{{\`A}}{1}%
+    {Ç}{{\c{C}}}{1}%
+    {Œ}{{\OE}}{1}%
+    {Ê}{{\^E}}{1}%
+    {ê}{{\^e}}{1}%
+    {î}{{\^i}}{1}%
+    {ô}{{\^o}}{1}%
+    {û}{{\^u}}{1}%
+    {ë}{{\¨{e}}}{1}%
+    {û}{{\^{u}}}{1}%
+    {â}{{\^{a}}}{1}%
+    {Â}{{\^{A}}}{1}%
+    {Î}{{\^{I}}}1
+}
+
 \begin{document}
 %----------------------------------------------------------------------------------%
 
@@ -50,13 +78,40 @@
 
 %--- résumé & abstract ---%
 \section*{Résumé}
+Est-il possible de reconnaître automatiquement des concepts abstraits dans des publications ? C'est en tout cas le défi qui m'a été lancé par l'Insee pour mon stage de fin d'études.
+\newline
+
+Une branche du traitement du langage naturel consiste à reconnaître automatiquement des entités dans du texte de manière par exemple à identifier des personnes, des régions géographiques ou encore des monnaies. Ce rapport décrit les différentes étapes du déroulé du stage, de l'étude du domaine de la reconnaissance d'entités nommées jusqu'à la mise en place d'un Web Service. Il expose également toutes les compétences, tant techniques que transversales, mises en oeuvre dans l'élaboration d'un service de reconnaissance d'entités nommées.
 \newpage
 
 \section*{Abstract}
+Is it possible to automatically recognize abstract concepts in editions? This is the challenge that INSEE presented to me for my end-of-study internship.
+\newline
+
+A field of natural language processing is to automatically recognize entities in a text in order to identify, for example, persons, geographical locations or currencies. This report describes the different stages of the internship, from the study of the field of named entity recognition to the implementation of a Web Service. It also outlines all the skills, both technical and transversal, required to develop a service for named entitiy recognition.
 \newpage
 
 %--- remerciements ---%
 \section*{Remerciements}
+Un grand merci d'abord à Franck Cotton pour m'avoir proposé ce stage et avoir suivi son avancement tout au long de ces six mois.
+\newline
+
+Je remercie également Juliette Fourcot qui m'a encadré et aidé à de nombreuses reprises, tant sur des aspects techniques qu'organisationnels.
+\newline
+
+Merci également à Amel Bouzeghoub pour avoir été ma conseillère tout au long de ce stage.
+\newline
+
+Je remercie de plus Mélinée Treppoz-Salomon, Frédéric Comte, Olivier Levitt et Éric Sigaud. Mélinée pour s'être rendue disponible pour m'aider dans la prise en main des outils mis à disposition. Frédéric et Olivier pour leurs savoir et leur pédagogie, qui m'ont permis de grandement améliorer la qualité des livrables logiciels. Éric pour sa bienveillance et son expertise.
+\newline
+
+Merci à Thomas Dubois et son équipe pour l'intérêt porté au projet.
+\newline
+
+Un grand merci à Yousra Cherkaoui Tangi pour la relecture de ce rapport.
+\newline
+
+Et enfin merci à vous qui lisez ce rapport.
 \newpage
 
 %--- table des matières ---%
@@ -67,7 +122,7 @@
 
 %--- introduction ---%
 \section*{Introduction}
-Ce stage a été proposé par M. Franck Cotton, conseiller scientifique de la Direction du Système d'Information de l'Insee. Le but est d'expérimenter sur les méthodes de traitement du langage naturel, et plus spécifiquement sur la reconnaissance d'entités nommées dans les publications de l'Insee. Une entités nommée peut désigner une organisation, un lieux, une date ou encore une personne. La finalité est d'en augmenter la qualité, par l'insertion automatique le liens vers les définitions des entités par exemple. Avec l'utilisation récente des réseaux de neurones dans le traitement du langage naturel, ce domaine a beaucoup évolué. Les traitements sont de plus en plus performants et proposent davantage de fonctionnalités. Ce projet est l'occasion de mettre en application ces nouvelles technologies du traitement du langage naturel, en construisant un premier service de reconnaissance d'entités nommées. Ce service devra être capable de reconnaître, dans les publications de l'Insee, des concepts généraux tels que des dates ou des lieux, mais aussi les concepts statistiques de l'Insee.
+Ce stage a été proposé par M. Franck Cotton, conseiller scientifique de la Direction du Système d'Information de l'Insee. Un des objectifs de l'Insee était de s'approprier les dernières évolutions en matière de traitement du langage naturel, en particulier dans le domaine de la reconnaissance d'entités nommées. Une entité nommée peut désigner une organisation, un lieu, une date ou encore une personne. La finalité est d'enrichir l'information contenue dans les publications par des éléments de contexte spécifique au domaine métier de l'Insee. Avec l'utilisation récente des réseaux de neurones dans le traitement du langage naturel, ce domaine a beaucoup évolué. Les traitements sont de plus en plus performants et proposent davantage de fonctionnalités. Ce projet est l'occasion de mettre en application ces nouvelles technologies du traitement du langage naturel, en construisant un premier service de reconnaissance d'entités nommées. Ce service devra être capable de reconnaître, dans les publications de l'Insee, des concepts généraux tels que des dates ou des lieux, mais aussi les concepts statistiques de l'Insee.
 \newline
 
 Après une définition du projet et de l'environnement de travail, nous décrirons les enjeux de l'utilisation du traitement du langage naturel à l'Insee. Nous présenterons ensuite le détail du développement d'un premier service, avant d'en faire le bilan.
@@ -84,9 +139,22 @@ Après une définition du projet et de l'environnement de travail, nous décriro
 
 %--- conclusion ---%
 \section*{Conclusion}
+Par la description de mon environnement de travail, nous avons pu en premier lieu préciser les objectifs du stage. Nous avons ensuite exposé les résultats d'une étude sur la reconnaissance d'entités nommées qui a abouti à l'élaboration d'un premier prototype. Une comparaison des différents outils du traitement du langage naturel et du développement d'applications web a par la suite donné naissance à un second service. Cela a permis de présenter les résultats, apports et perspectives du projet, pour l'Insee comme pour moi.
+\newline
+
+Le service de développement de l'Insee à Montrouge m'a finalement fait une offre pour devenir développeur au sein de leurs équipes. Étant davantage attiré par le domaine de la recherche, j'ai préféré la décliner.
+\newline
+
+Le projet apporte des premiers résultats et une multitude d'applications possibles. Le Ministère de la Justice est par exemple intéressé par la reconnaissance d'entités nommées, afin d'anonymiser certains rapports.
 \newpage
 
 %----------------------------------------------------------------------------------%
+%--- liste des figures et tableaux ---%
+\listoffigures
+\vspace{20pt}
+\listoftables
+\newpage
+
 %--- bibliographie ---%
 \bibliographystyle{unsrt}
 \bibliography{biblio}

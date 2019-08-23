@@ -8,7 +8,7 @@ N'ayant aucune connaissance préalable sur le traitement du langage naturel, ou 
 Le traitement du langage naturel est un domaine qui s'attache, à partir d'un texte, à en analyser le sens et à en extraire une connaissance. Il permet par exemple d'analyser les sentiments dans un texte, ou encore à repérer les mentions d'organisations ou de personnes.
 \newline
 
-Il prend la forme d'un «~pipeline~», c'est-à-dire une succession de traitements, chacun donnant une information plus ou moins précise sur le texte. Parmi les traitements les plus courants on trouve :
+Il prend la forme d'un «~pipeline~», c'est-à-dire une succession de traitements, chacun donnant une information différente sur le texte. Parmi les traitements les plus courants on trouve :
 \begin{enumerate}
     \item \textit{Tokenisation} : un pré-traitement qui permet de découper les textes en «~tokens~» à savoir en mots et éléments de ponctuation.
     \vspace{5pt}
@@ -24,23 +24,23 @@ Il prend la forme d'un «~pipeline~», c'est-à-dire une succession de traitemen
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.8]{images/Pipeline-example.png}
-    \caption{Exemple de pipeline}
+    \includegraphics[scale=0.34]{images/Pipeline-example.png}
+    \caption{Exemple de pipeline NLP}
     \label{fig:nlp-pipeline-example}
 \end{figure}
 
 \vspace{10pt}
 
-On obtient en sortie de ce pipeline des informations à divers niveaux~: \textit{Part-of-speech tagging} et \textit{Lemmatisation} opèrent sur les mots, tandis que \textit{Dependencies} opère sur les phrases et propositions. D'autres traitements, tels que \textit{Coreference resolution} opèrent sur des textes; ce traitement permet de relier les pronoms et autres noms lorsqu'ils font référence à la même entité. Davantage de traitements ainsi que des exemples plus précis sont donnés en annexe.
+On obtient en sortie de ce pipeline des informations à divers niveaux~: \textit{Part-of-speech tagging} et \textit{Lemmatisation} opèrent sur les mots, tandis que \textit{Dependencies} opère sur les phrases et propositions. D'autres traitements, tels que \textit{Coreference resolution} opèrent sur des textes; ce traitement permet de relier les pronoms et autres noms lorsqu'ils font référence à la même entité. Des exemples pour chaque traitement sont données en annexe page \pageref{nlp-exemple}.
 \newline
 
-Les différentes implémentations du traitement du langage naturel, jusqu'alors peu généralisables, ont beaucoup évolué suite à l'arrivée des techniques à base de réseaux de neurones entre 2015 et 2017. C'est pourquoi ce domaine atteint aujourd'hui de meilleures performances, notamment en ce qui concerne la reconnaissance d'entités nommées.
+Les différentes techniques du traitement du langage naturel, jusqu'alors peu généralisables, ont beaucoup évolué suite à l'arrivée des techniques à base de réseaux de neurones entre 2015 et 2017. C'est pourquoi ce domaine atteint aujourd'hui de meilleures performances, notamment en ce qui concerne la reconnaissance d'entités nommées. Les nouvelles techniques donnent des résultats plus précis, tout en gardant des temps de traitements équivalents aux techniques classiques.
 \label{section 2.1.1}
 
 \subsubsection{La reconnaissance d'entités nommées}
 
-\subsubsection*{REN et Désambiguïsations}
-La reconnaissance d'entités nommées est l'étiquetage dans un texte d'un mot ou d'un groupe de mots, ainsi que la classification de ce mot ou groupe de mots. Ces classes comprennent les personnes, les dates, les lieux ou encore les organisations (instituts, associations, entreprises, etc.). Ce traitement inclut souvent un autre traitement que l'on appelle \textit{Entity Linking} ou \textit{Disambiguation}, qui est le fait de rattacher une occurrence d'entités nommées dans un texte à une base de connaissance, en utilisant le contexte. Prenons un exemple tiré d'\href{https://ambiversenlu.mpi-inf.mpg.de/}{Ambiverse NLU} \cite{ambiverse-nlu}, un service développé par l'Institut de recherche Max Planck effectuant ces deux traitements :
+\subsubsection*{REN et Désambiguïsation}
+La reconnaissance d'entités nommées est l'étiquetage dans un texte d'un mot ou d'un groupe de mots, ainsi que la classification de ce mot ou groupe de mots. Ces classes comprennent de façon générique les personnes, les dates, les lieux ou encore les organisations (instituts, associations, entreprises, etc.). Ce traitement inclut souvent un autre traitement que l'on appelle \textit{Entity Linking} ou \textit{Disambiguation}, qui est le fait de rattacher une occurrence d'entités nommées dans un texte à une base de connaissance, en utilisant le contexte. Prenons un exemple tiré d'\href{https://ambiversenlu.mpi-inf.mpg.de/}{Ambiverse NLU} \cite{ambiverse-nlu}, un service développé par l'Institut de recherche Max Planck effectuant ces deux traitements :
 \newline
 
 \begin{figure}[H]
@@ -52,7 +52,7 @@ La reconnaissance d'entités nommées est l'étiquetage dans un texte d'un mot o
 
 \vspace{10pt}
 
-La reconnaissance d'entités nommées à proprement parler est le fait d'étiqueter les quatre premiers caractères, c'est-à-dire le mot «~Jack~», comme faisant mention d'une personne. La désambiguïsation est le fait de lier le mot «~Jack~», dans le contexte de la phrase à Jack Ma. Dans le cas d'Ambiverse NLU, c'est la base donnée DBPedia, graphe RDF généré à partir des données de Wikipedia, qui est utilisée comme base de connaissance.
+Dans la phrase d'exemple çi-dessus, la reconnaissance d'entités nommées à proprement parler est le fait d'étiqueter les quatre premiers caractères, c'est-à-dire le mot «~Jack~», comme faisant mention d'une personne. La désambiguïsation est le fait de lier le mot «~Jack~», dans le contexte de la phrase à Jack Ma. Dans le cas d'Ambiverse NLU, c'est la base donnée DBPedia, graphe RDF généré à partir des données de Wikipedia, qui est utilisée comme base de connaissance.
 \newline
 
 Dans la littérature, beaucoup s'interrogent sur la définition d'une entité, plus particulièrement sur les classes utilisées dans la reconnaissance d'entités nommées. Doit-on rester générique, en utilisant la classe «~personne~», laissant un travail de désambiguïsation plus conséquent ? Ou alors doit-on être plus spécifique en utilisant son statut (peintre, musicien, chef d'entreprise) ?
@@ -63,26 +63,26 @@ La question se pose également dans le cas des concepts statistiques. Le référ
 \subsubsection*{Les méthodes de reconnaissance d'entités nommées}
 Pour effectuer la reconnaissance d'entités nommées, il existe deux méthodes : 
 \begin{enumerate}
-    \item L'annotation à base de règles ou \textit{Rule based matching} : elle permet d'annoter de manière déterministe les mots ou groupes de mots validant une règle. Cette règle peut porter sur les simples chaînes de caractères (expression régulière) ou sur les résultats du traitement du langage naturel (\textit{Part-of-speech}, \textit{Lemmatisation}, etc.). On peut par exemple établir une règle qui cherche toute occurrence d'un mot ayant pour lemme «~salaire~» et étant suivi de deux adjectifs. Ainsi, dans la phrase : «~le salaire net moyen augmente de 1,1 \% en euros constants par rapport à 2014~», la règle étiquetterait «~salaire net moyen~». D'autres exemples de règles ainsi que leur résultats sont donnés en annexe.
+    \item L'annotation à base de règles ou \textit{Rule based matching} : elle permet d'annoter de manière déterministe les mots ou groupes de mots validant une règle. Cette règle peut porter sur les simples chaînes de caractères (expression régulière) ou sur les résultats du traitement du langage naturel (\textit{Part-of-speech}, \textit{Lemmatisation}, etc.). On peut par exemple établir une règle qui cherche toute occurrence d'un mot ayant pour lemme «~salaire~» et étant suivi de deux adjectifs. Ainsi, dans la phrase : «~le salaire net moyen augmente de 1,1 \% en euros constants par rapport à 2014~», la règle étiquetterait «~salaire net moyen~». D'autres exemples de règles ainsi que leur résultats sont donnés en annexe page \pageref{rule-exemple}.
     \vspace{5pt}
-    \item L'annotation à base d'apprentissage : la méthode consiste à entraîner un réseaux de neurones sur des données d'exemples. Il existe différentes architectures de réseaux de neurones pour effectuer de la REN. \href{https://www.aclweb.org/anthology/Q16-1026}{Ciu et Nichols} \cite{chiu-nichols}, \href{https://www.aclweb.org/anthology/N16-1030}{Lample et. al} \cite{lampe-al}, et d'autres ont tous en commun certains éléments. Le principe est d'analyser les phrases mot à mot~: pour chacun d'entre eux, on calcule et stocke un vecteur, qui va servir au réseau attribuant un label. Cette méthode de «~stockage~» est appelé LSTM, pour \textit{Long short-term Memory}. Ce premier résultat, appelé \textit{Word Embedding}, est parfois accompagné d'autres résultats TLN, comme le tag \textit{Part-of-Speech}. Ces données sont ensuite traitées par un autre réseau qui détermine le libellé d'entité nommée. Des références sont données dans la bibliographie.
+    \item L'annotation à base d'apprentissage : la méthode consiste à entraîner un réseau de neurones sur des données d'exemples. Il existe différentes architectures de réseaux de neurones pour effectuer de la REN. \href{https://www.aclweb.org/anthology/Q16-1026}{Ciu et Nichols} \cite{chiu-nichols}, \href{https://www.aclweb.org/anthology/N16-1030}{Lample et. al} \cite{lampe-al}, et d'autres ont tous en commun certains éléments. Le principe est d'analyser les phrases mot à mot~: pour chacun d'entre eux, on calcule et stocke un vecteur, qui va servir au réseau attribuant un label. Cette méthode de «~stockage~» est appelé LSTM, pour \textit{Long short-term Memory}. D'autres résultats du TLN, comme le tag \textit{Part-of-Speech} sont parfois stockés à l'aide de la méthode LSTM. Ces données sont ensuite traitées par un autre réseau qui détermine le libellé d'entité nommée. Des références sont données dans la bibliographie.
     \newline
 \end{enumerate}
 
 L'avantage de la première méthode est qu'elle ne nécessite aucun pré-requis, et qu'elle permet de faire la désambiguïsation plus aisément en associant pour chaque règle un identifiant. Cependant elle ne permet pas de généralisation, c'est-à-dire l'annotation d'entités inconnues, contrairement à la deuxième méthode. C'est en effet le point fort des méthodes à base de réseaux de neurone, qui nécessitent néanmoins de disposer de données d'apprentissage. Dans le cas de la reconnaissance d'entités nommées, ces données sont des textes dont les mots représentant les entités nommées sont repérés. Il existe cependant plusieurs prérequis sur les données d'apprentissage :
 \newline
 
-Tout d'abord le volume des données : il doit être suffisant pour que tous les cas de figure soient représentés. Dans le cas de la reconnaissance d'entités nommées, il est difficile de définir la représentativité des données. Il faut évidemment que les concepts soient tous cités un certain nombre de fois dans le corpus des données. En revanche, définir les cas de figure est très expérimental. Prenons le cas du concept intitulé «~Solde apparent des entrées sorties~» : il faut tout d'abord analyser sous quelles formes il est cité dans les publications. On trouve parfois «~solde des entrées sorties~», quand il est déjà cité avec son libellé complet dans le texte. La question de la représentativité est de savoir quelle est la proportion d'occurrence de cette forme du concept dans le corpus d'entraînement, et est donc spécifique à chaque concept, et peut-être même aux langages utilisés dans les publications. Suivant que le langage utilisé soit très technique, comme on le retrouve dans certaines publications, ou courant, les termes utilisés pour désigner les concepts sont différents.
+Tout d'abord le volume des données : il doit être suffisant pour que tous les cas de figure soient représentés, et si possible dans les bonnes proportions. Dans le cas de la reconnaissance d'entités nommées, il est difficile de définir la représentativité des données. Il faut évidemment que les concepts soient tous cités un certain nombre de fois dans le corpus des données. En revanche, définir les cas de figure est très expérimental. Prenons le cas du concept intitulé «~Solde apparent des entrées sorties~» : il faut tout d'abord analyser sous quelles formes il est cité dans les publications. On trouve parfois «~solde des entrées sorties~», quand il est déjà cité avec son libellé complet dans le texte. La question de la représentativité est de savoir quelle est la proportion d'occurrence de cette forme du concept dans le corpus d'entraînement, et est donc spécifique à chaque concept, et peut-être même aux langages utilisés dans les publications. Suivant que le langage utilisé soit très technique, comme on le retrouve dans certaines publications, ou courant, les termes utilisés pour désigner les concepts sont différents.
 \newline
 
 On retrouve dans les textes de la plupart des publications de l'Insee des liens vers les concepts et leurs définitions, ces derniers pouvant servir de base d'apprentissage. Cependant ils ne sont pas suffisamment nombreux pour être représentatif de tous les cas rencontrés. C'est pourquoi le choix s'est rapidement porté sur l'annotation à base de règles.
 \newline
 
-L'hypothèse à plus long terme de se constituer une base d'apprentissage n'est cependant pas écartée. Le premier outil développé pourrait permettre, avec une correction apportée par les auteurs, de se constituer cette base.
+L'hypothèse à plus long terme de se constituer une base d'apprentissage n'est cependant pas écartée. Le premier outil développé pourrait permettre, à l'aide une correction manuelle apportée par les rédacteurs quand cela est nécessaire, de se constituer cette base.
 \label{section 2.1.2 - Méthodes de REN}
 
 \subsubsection{Une première utilisation : amélioration de la qualité des publications}
-Comme mentionné dans la partie \ref{section 1.2.2}, l'objectif principal d'un tel service est d'améliorer les publications. Plus précisément, il s'agit de donner un retour aux auteurs des publications sur les concepts cités dans leurs écrits. 
+Comme mentionné dans la partie \ref{section 1.2.2}, l'objectif principal d'un tel service est d'améliorer les publications. Plus précisément, il s'agit de donner un retour aux auteurs des publications sur les concepts mentionnés dans leurs écrits. 
 \newline
 
 Le premier cas d'application serait en effet d'avertir les auteurs sur les concepts statistiques employés dans une publication, afin d'en retirer l'éventuelle ambiguïté sur le terme cité. Par exemple, le concept de «~population active~» a un sens légèrement différent suivant si on l'entend au sens du Bureau International du Travail (BIT) ou au sens du recensement. Le service pourrait servir à alerter l'auteur si l'on ne peut déterminer, à partir d'informations figurant dans la publication, s'il s'agit de la population active au sens de la BIT ou au sens du recensement.
@@ -101,7 +101,7 @@ Sur le long terme, un tel service pourrait également servir à automatiser cert
 La première application est assez naturellement l'insertion de liens hypertextes vers les définitions des concepts repérés. Cela faciliterait le travail des rédacteurs. 
 \newline
 
-Un tel outil peut aussi servir à effectuer de l'indexation de contenu sur les publications de l'Insee. Elle est aujourd'hui effectuer à partir du moteur de recherche \textbf{Solr}, qui indexe les contenus par rapport au vocabulaire utilisé. Il intègre quelques traitements de langages, suffisant pour faire un moteur de recherche performant. Explorer les possibilités d'indexation vis-à-vis des concepts retrouvés dans les publications est donc envisageable mais ne répond pour le moment pas à un besoin de l'Insee.
+Un tel outil peut aussi servir à effectuer de l'indexation de contenu sur les publications de l'Insee. Elle est aujourd'hui effectuée à partir du moteur de recherche \textbf{Solr}, qui indexe les contenus par rapport au vocabulaire utilisé dans le titre, le sous-titre et le chapô des publications. À moins que le concept soit mentionné de manière exacte dans l'un de ses trois éléments, la publication n'est pas indéxé par rapport au concept. Avec l'outil, on pourrait affiner l'indexation effectuée par Solr, et ainsi permettre aux utilisateurs de soumettre des recherches plus précises. Explorer les possibilités d'indexation vis-à-vis des concepts retrouvés dans les publications est donc envisageable mais ne répond pour le moment pas à un besoin de l'Insee.
 \newline
 
 La diversité des champs d'application d'un service de reconnaissance d'entités nommées nécessite une réflexion approfondie sur l'architecture du service, architecture qui est décrite partie 3.2.1. Cela implique également d'adopter une méthode de travail agile. Les fonctionnalités offertes par le traitement du langage naturel ainsi que les données en libre accès (\textit{Linked Open Data}) évoluent en permanence et il est probable qu'un tel service soit également amené à beaucoup évoluer.
@@ -110,13 +110,13 @@ La diversité des champs d'application d'un service de reconnaissance d'entités
 \subsection{Une première implémentation facilitée par la plateforme}
 
 \subsubsection{La plateforme innovation}
-Travaillant à la DIIT (voir section \ref{section 1.1.2}), j'ai la chance d'évoluer au plus près de la plateforme Innovation. Cette plateforme a pour but de mettre à disposition de tous les agents Insee un environnement pour prototyper, tester et découvrir des nouveaux services. Elle est en quelque sorte un «~bac à sable~» pour les développeurs, et une plateforme de travail collaborative pour les agents Insee. Maintenu par la DIIT, c'est un projet en développement et ne doit par conséquent pas être confondue avec les services actuellement maintenus en production. Elle m'offre d'une part une vision très pratique de ce qui m'a été enseigné dans ma voie d'approfondissement, et d'autre part un environnement de développement idéal pour la tâche qui m'est confiée.
+Travaillant à la DIIT (voir section \ref{section 1.1.2}), j'ai la chance d'évoluer au plus près de la plateforme Innovation. Cette plateforme a pour but de mettre à disposition de tous les agents Insee un environnement pour prototyper, tester et découvrir des nouveaux services. Elle est en quelque sorte un «~bac à sable~» pour les développeurs et les statisticiens, et une plateforme de travail collaborative pour les agents Insee. Maintenu par la DIIT, c'est un projet en développement et ne doit par conséquent pas être confondue avec les services actuellement maintenus en production. Elle m'offre d'une part une vision très pratique de ce qui m'a été enseigné dans ma voie d'approfondissement, et d'autre part un environnement de développement idéal pour la tâche qui m'est confiée.
 \newline
 
 Son implémentation est fondée sur une architecture CaaS, \textit{Container as a Service}. La disponibilité est de type \textit{Best effort} : cela signifie que les garanties de services sont limitées. La fraîcheur des mises à jour et des derniers standards techniques sont préférés à la stabilité et au maintien des services. La confidentialité n'est pas garantie, ce qui implique qu'aucune donnée sensible ne doit y être déposée.
 \newline
 
-Les données sur lesquelles je travaille sont disponibles sur le net, et ne sont donc pas confidentielles. Cette plateforme m'offre des outils tout à fait adaptés à mon projet de stage, comme à mon projet professionnel. L'administration de plateforme \textit{CaaS} fait en effet partie des métiers qui m'intéressent. Découvrir les aspects techniques et humains d'une telle activité à été pour moi très enrichissant.
+Les données sur lesquelles je travaille sont disponibles sur le web, et ne sont donc pas confidentielles. Cette plateforme m'offre des outils tout à fait adaptés à mon projet de stage, comme à mon projet professionnel. L'administration de plateforme \textit{CaaS} fait en effet partie des métiers qui m'intéressent. Découvrir les aspects techniques et humains d'une telle activité à été pour moi très enrichissant.
 \label{section 2.2.1}
 
 \subsubsection*{Architecture}
@@ -131,37 +131,37 @@ Les données sur lesquelles je travaille sont disponibles sur le net, et ne sont
 
 L'architecture physique totalise pour la gestion d'application 456 CPU, 4480 Go de RAM et 48 To de stockage disque. Côté logiciel, il s'agit d'un cluster \textbf{Mesos} utilisant \textbf{Marathon} et \textbf{Metronome} comme orchestrateur de conteneurs, accompagnés de plusieurs services longues durées (de gauche à droite sur le schéma):
 \begin{enumerate}
-    \item \href{https://about.gitlab.com/}{\textbf{Gitlab}} \cite{gitlab}~: la forge logicielle de la plateforme. Elle est accompagnée d'un CI/CD (\textit{Continuous Integration / Continuous Delivery}), facilitant la mise à jour des services de la plateforme. La configuration des services de longue durée y est stockée : chaque service longue durée a un projet Gitlab qui lui est associé, exception faite des services centraux (Gitlab, Minio). Les Gitlab-runners de la plateforme permettent, via Gitlab, de mettre à jour les services de la plateforme et d'en déployer de nouveaux.
+    \item \href{https://about.gitlab.com/}{\textbf{Gitlab}} \cite{gitlab}~: la forge logicielle de la plateforme. Elle est dotée notamment d'un CI/CD (\textit{Continuous Integration / Continuous Delivery}), facilitant la mise à jour des services de la plateforme. La configuration des services de longue durée y est stockée : chaque service longue durée a un projet Gitlab qui lui est associé, exception faite des services centraux (Gitlab, Minio). Les Gitlab-runners de la plateforme permettent, via Gitlab, de mettre à jour les services de la plateforme et d'en déployer de nouveaux en sollicitant l'API Marathon.
     \vspace{5pt}
     \item \href{https://min.io/}{\textbf{Minio}} \cite{minio}~: service de stockage réparti orienté objet. Minio est une implémentation de S3, \textit{Simple Storage System}, développé par \textbf{Amazon}. Il offre par conséquent une API compatible avec beaucoup de clients, en plus d'une interface Web pour gérer ses fichiers à la main.
     \vspace{5pt}
-    \item \href{https://www.keycloak.org/}{\textbf{KeyCloak}} \cite{keycloak}~: service d'authentification et de gestion d'accès. Il fournit aux services ayant été configurés pour utiliser KeyCloak une API pour gérer l'authentification. Il est notamment utilisé par Gitlab et par Minio (session).
+    \item \href{https://www.keycloak.org/}{\textbf{KeyCloak}} \cite{keycloak}~: service d'authentification et de gestion d'accès. Il fournit aux services une API pour gérer l'authentification. Il est notamment utilisé par Gitlab et par Minio (session).
     \vspace{5pt}
-    \item \textbf{Onyxia}~: service web d'utilisation de la plateforme. Développé en interne, il regroupe une IHM et une API. L'IHM, portail d'entrée pour les utilisateurs de la plateforme, fournit la liste des services longues durées de la plateforme, une liste d'applications dites «~self~», que chacun peut lancer (des IDEs, outils bureautiques, etc.) ainsi qu'une IHM pour interagir avec Minio (déposer des fichiers par exemple). Afin de lancer un self-service, elle communique avec l'API REST Onyxia. Cette dernière dialogue avec Marathon et Mesos pour lancer le conteneur et ouvrir l'accès à l'utilisateur. Des détails techniques sont donnés en annexe.
+    \item \textbf{Onyxia}~: service web d'utilisation de la plateforme. Développé en interne, il regroupe une IHM et une API. L'IHM, portail d'entrée pour les utilisateurs de la plateforme, fournit la liste des services longues durées de la plateforme, une liste d'applications dites «~self~», que chacun peut lancer (des IDEs, outils bureautiques, etc.) ainsi qu'une IHM pour interagir avec Minio (déposer des fichiers par exemple). Afin de lancer un self-service, elle communique avec l'API REST Onyxia. Cette dernière dialogue avec Marathon et Mesos pour lancer le conteneur et ouvrir l'accès à l'utilisateur.
     \vspace{5pt}
     \item Et beaucoup d'autres applications ! \href{https://www.vaultproject.io/}{\textbf{Vault}} \cite{vault}, gestionnaire de secrets, \href{https://fr.sonatype.com/nexus-repository-sonatype}{\textbf{Nexus}} \cite{nexus}, gestionnaire de dépôt, \href{https://rocket.chat/}{\textbf{RocketChat}} \cite{rocketchat}, serveur de messagerie instantanée ou encore \href{https://humhub.org}{\textbf{Humhub}} \cite{humhub}, réseau social d'entreprise sont déployés sur Marathon.
     \newline
 \end{enumerate}
 
-La plateforme fournit également des services à la demande, ou self-service comme cité dernièrement. La majorité d'entre eux est orienté développement ou statistique, mais certains sont des outils collaboratifs à la destination de tous. Dans la continuité des missions de la DIIT, le but de la plateforme est également d'encourager le travail collaboratif, notamment autour de la gestion et l'entretien des services mis à disposition.
+La plateforme fournit également des services à la demande, ou self-services. La majorité d'entre eux est orienté développement ou statistique, mais certains sont des outils collaboratifs à la destination de tous. Elle totalise donc une soixantaine de services. Dans la continuité des missions de la DIIT, le but de la plateforme est également d'encourager le travail collaboratif, notamment autour de la gestion et l'entretien des services mis à disposition.
 
 \subsubsection{Une approche collaborative}
 Je découvre tout au long du stage un fonctionnement humain centré sur la collaboration et l'ouverture. Bien que celui-ci me soit familier de par mon engagement associatif à l'école, je l'observe à l'Insee sous une toute autre échelle et avec une diversité des profils. Certains services sont en effet maintenus aujourd'hui par des statisticiens, qui ont en général une vision pratique, une vision métier de l'informatique. Cela a été rendu possible par les incubations qu'offre la DIIT.
 \newline
 
-Ces incubations, auxquelles j'ai pu participer, durent deux ou trois jours. Elles ont pour but d'aider une équipe sur leur projet de développement. L'équipe vient avec une problématique technique relative aux méthodes de développement DevOps. Le but est de leur donner les outils et compétences pour être à même d'intégrer cette démarche : elle inclut en général un apprentissage de \textbf{Git} lorsque cela est nécessaire, et plus souvent le fonctionnement de Gitlab-CI, de \textbf{Docker} et de Marathon. J'ai la chance lors de ces incubations d'en apprendre davantage sur la plateforme en explorant les différents cas d'usage, mais aussi en apportant mon aide aux incubés concernant l'utilisation de Git et de Docker par exemple. C'est ainsi que la DIIT favorise une gestion commune de la plateforme, les incubations aboutissant parfois au déploiement d'un nouveau service sur la plateforme, service géré principalement par l'équipe incubée. Suite à une incubation, deux statisticiens des bureaux d'Aix-en-Provence gèrent aujourd'hui un service \textit{OpenStreetMap} sur la plateforme, qui leur permet d'effectuer des statistiques sur les temps de trajet des usagers de la route dans leur travail. 
+Ces incubations, auxquelles j'ai pu participer, durent deux ou trois jours. Elles ont pour but d'aider une équipe sur leur projet de développement. L'équipe vient avec une problématique technique relative aux méthodes de développement DevOps. Le but est de leur donner les outils et compétences pour être à même d'intégrer cette démarche : elle inclut en général un apprentissage de \textbf{Git} lorsque cela est nécessaire, et plus souvent le fonctionnement de Gitlab-CI, de \textbf{Docker} et de Marathon. J'ai la chance lors de ces incubations d'en apprendre davantage sur la plateforme en explorant les différents cas d'usage, mais aussi en apportant mon aide aux incubés concernant l'utilisation de Git et de Docker par exemple. C'est ainsi que la DIIT favorise une gestion commune de la plateforme, les incubations aboutissant parfois au déploiement d'un nouveau service sur la plateforme, service géré principalement par l'équipe incubée. Suite à une incubation, deux statisticiens des bureaux de Marseille gèrent aujourd'hui un service \textit{OpenStreetMap} sur la plateforme, qui leur permet d'effectuer des statistiques sur les temps de trajet entre domicile et travail à partir des données du recensement.
 \newline
 
-Travaillant sur les environnements de développement disponibles en self-service, j'ai également contribué au projet \textbf{Ubuntu} de la plateforme. Ce service permet de développer simplement sous Ubuntu, notamment en Java. Pour plus de confort et d'efficacité dans le développement, je contribue à l'image Docker Ubuntu proposé, en mettant à jour les IDEs et en y ajoutant certains plugins et paquets.
+Travaillant sur les environnements de développement disponibles en self-service, j'ai également contribué au projet \textbf{Desktop Ubuntu} de la plateforme. Ce service permet de développer simplement sous un Ubuntu web, notamment en Java. Pour plus de confort et d'efficacité dans le développement, je contribue à l'image Docker Ubuntu proposé, en mettant à jour les IDEs et en y ajoutant certains plugins et paquets.
 \label{section 2.2.2}
 
 \subsubsection*{Le séminaire du développement}
 Les échanges sur les nouveaux projets et technologies utilisées sont favorisés par un évènement qui a lieu chaque année et auquel j'ai eu la chance de participer : le séminaire du développement. Pendant une semaine, chaque équipe de développement de l'Insee, incluant des équipes à Nantes, Lille et Orléans, a l'occasion de présenter à tous les développeurs les utilisations de nouvelles technologies dans leurs travaux.
 \newline
 
-TODO : PHOTO
+% TODO : PHOTO
 
-Ce séminaire a été l'occasion pour moi de voir beaucoup de technologies et bibliothèques récentes en application concrète dans des projets. Écriture de grammaire avec \textbf{Antlr4}, automatisation de tests d'interface Web avec \textbf{Selenium} et \textbf{Cypress}, ou encore packaging d'applications Python pour du web avec \textbf{Flask}, le séminaire offre une bonne vue d'ensemble des technologies à l'oeuvre à l'Insee. J'ai moi aussi l'occasion de présenter mes premiers résultats sur l'utilisation du traitement du langage naturel dans les publications de l'institut. Des échanges sur les différentes bibliothèques existantes me permettent de mettre à l'épreuve le premier pipeline construit, et ainsi de l'améliorer.
+Ce séminaire a été l'occasion pour moi de voir beaucoup de technologies et bibliothèques récentes en application concrète dans des projets. Écriture de grammaire avec \textbf{Antlr4}, automatisation de tests d'interface Web avec \textbf{Selenium} et \textbf{Cypress}, ou encore packaging d'applications Python pour du web avec \textbf{Flask}, le séminaire offre une bonne vue d'ensemble des technologies à l'oeuvre à l'Insee. J'ai moi aussi eu l'occasion de présenter mes premiers résultats sur l'utilisation du traitement du langage naturel dans les publications de l'institut. Des échanges sur les différentes bibliothèques existantes me permettent de mettre à l'épreuve le premier pipeline construit, et ainsi de l'améliorer.
 \newline
 
 La démarche participative de la plateforme est favorisée jusque dans les salles serveurs ! Avec l'arrivée de quatre nouvelles machines, j'ai apporté mon aide pour remplacer les noeuds esclaves de stockage de la plateforme innovation. Au programme : câblage, configuration réseau et installation de système d'exploitation. 
@@ -178,7 +178,7 @@ C'est dans cette démarche collaborative autour du développement que j'ai d'une
 \label{section 2.2.2 - Séminaire du développement}
 
 \subsubsection{La pratique DevOps}
-La pratique DevOps est le fait de développer un projet de manière continue, du développement du logiciel cœur jusqu'à sa livraison et son maintient pour l'utilisateur final. Souvent accompagné d'une démarche agile, il s'agit dans cette méthode d'assurer et de suivre toute les étapes de vie d'un logiciel : développer, intégrer, tester, déployer, exploiter et maintenir les fonctionnalités d'une application de manière continue. Le principe est de faire des cycles de développement courts, et des livraisons fréquentes, afin de mieux s'adapter aux changements. L'automatisation de certaines tâche, comme le déploiement ou les tests, fait pleinement partie de cette démarche.
+La pratique DevOps est le fait de développer un projet de manière continue, du développement du logiciel cœur jusqu'à sa livraison et son maintient pour l'utilisateur final. Souvent accompagné d'une démarche agile, il s'agit dans cette méthode d'assurer et de suivre toute les étapes de vie d'un logiciel : développer, intégrer, tester, déployer, exploiter et maintenir les fonctionnalités d'une application de manière continue. Le principe est de faire des cycles de développement courts, et des livraisons fréquentes, afin de mieux s'adapter aux changements. L'automatisation de certaines tâches, comme le déploiement ou les tests, fait pleinement partie de cette démarche.
 \newline
 
 La plateforme, avec \textbf{GitLab-CI/CD}, \textbf{Nexus} et l'API \textbf{Onyxia}, offre tous les outils pour adopter la démarche. Pour mon premier pipeline réalisé en Java et utilisant le gestionnaire de dépendances \textbf{Maven}, j'ai pu mettre en place un pipeline GitLab qui teste mon application dans un environnement proche d'un environnement de production. C'est en effet l'un des avantages du DevOps : préparer le terrain le plus en amont possible pour un passage en production. Le but n'est pas que de déployer une application fonctionnelle, mais de détecter les points d'amélioration sur le code existant. 
@@ -188,13 +188,15 @@ Pour la première maquette de mon application, il s'agit simplement de créer un
 \label{section 2.2.3}
 
 \subsubsection{Les différentes méthodes testées}
-Les premiers tests sur les méthodes de REN à base de règles ont été réalisés avec la bibliothèque \href{https://stanfordnlp.github.io/CoreNLP/}{Stanford Core NLP} \cite{corenlp-doc}. Ce choix a été guidé par l'orientation recherche de la bibliothèque : l'intégration des dernières avancées techniques dans le TLN sont préférés à la stabilité. C'est en effet parmi les premières à proposer en 2015 des traitements basés sur le \textit{Deep Learning}. Écrite en Java, elle me permet de plus de concentrer mes efforts sur la méthode de REN et non sur l'implémentation. 
+Les premiers tests sur les méthodes de REN à base de règles ont été réalisés avec la bibliothèque \href{https://stanfordnlp.github.io/CoreNLP/}{Stanford Core NLP} \cite{corenlp-doc}. Ce choix a été guidé par l'orientation recherche de la bibliothèque : l'intégration des dernières avancées techniques dans le TLN sont préférés à la stabilité. C'est en effet parmi les premières à proposer en 2015 des traitements basés sur le \textit{Deep Learning}. Écrite en Java, elle me permet en plus de concentrer mes efforts sur la méthode de REN et non sur l'implémentation. 
 \newline
 
-J'ai d'abord travaillé sur la reconnaissance des concepts statistiques à partir de leur libellé. Ces derniers ont diverses formes, avec parfois des annotations qu'on ne retrouve pas dans les publications. J'ai donc éliminé pour les tests les concepts dont les libellés ont des parenthèses et les longs libellés avec énumération, ce qui laisse environ 700 concepts. Une difficulté majeure pour tester les méthodes de reconnaissance est l'obtention de données de tests fiables et représentatives : d'une part, bien que la majorité des mentions de concepts statistiques soient aisées à repérer, certains utilisant des mots très communs ne le sont pas pour des non spécialistes. D'autre part, les publications traitent généralement d'un sujet précis. Une publication ne couvre finalement que peu de concepts statistiques, une dizaine en général. Il est donc difficile d'estimer la pertinence d'une méthode et c'est pourquoi je me suis attaché dans ces tests à reconnaître les groupes de mots pouvant être une occurrence de concept statistique.
+J'ai d'abord travaillé sur la reconnaissance des concepts statistiques à partir de leur libellé. Ces derniers ont diverses formes, avec parfois des annotations qu'on ne retrouve pas dans les publications. J'ai donc éliminé pour les tests les concepts dont les libellés ont des parenthèses et les longs libellés avec énumération, ce qui laisse environ 700 concepts. Une difficulté majeure pour tester les méthodes de reconnaissance est l'obtention de données de tests fiables et représentatives : d'une part, bien que la majorité des mentions de concepts statistiques soient aisées à repérer, certains utilisant des mots très communs ne le sont pas pour des non spécialistes. D'autre part, les publications traitent généralement d'un sujet précis. Une publication ne sollicite finalement que peu de concepts statistiques, une dizaine en général. Il est donc difficile d'estimer la pertinence d'une méthode et c'est pourquoi je me suis attaché dans ces tests à reconnaître les groupes de mots pouvant être une occurrence de concept statistique.
 \newline
 
-La toute première méthode testée est la plus triviale : reconnaître les occurrences en faisant une simple recherche textuelle. Cette simple méthode permet déjà de trouver beaucoup d'occurrences de concepts, souvent sur ceux ayant des libellés courts et simples, comme «~salaire~» ou «~commune~». Pour identifier les autres occurrences, plusieurs résultats de TLN peuvent être utilisés :
+% TODO : décrire les deux publications sur lesquelles les premiers tests ont été effectués.
+
+La toute première méthode testée est la plus triviale : reconnaître les occurrences en faisant une simple recherche textuelle. Cette simple méthode permet déjà de trouver beaucoup d'occurrences de concepts, souvent ceux ayant des libellés courts et simples, comme «~salaire~» ou «~commune~». Pour identifier les autres occurrences, plusieurs outils de TLN peuvent être utilisés :
 \newline
 
 \begin{itemize}
@@ -205,6 +207,8 @@ La toute première méthode testée est la plus triviale : reconnaître les occu
     \newline
 \end{itemize}
 
+% Introduire les notions de précision et rappel... lire note Juliette
+
 Les premiers tests sont encourageants mais ne couvrent qu'une petite partie des concepts de la base. Les règles sont de plus écrites à la main pour les quelques concepts testés. Pour passer à une plus grande échelle, j'ai construit un premier service de REN, incluant un générateur de règles.
 \label{section 2.2.4}
 
@@ -213,15 +217,15 @@ Le premier servie de reconnaissance d'entités nommées est construit avec la bi
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.72]{images/Concept-tagger.png}
-    \caption{Schéma général du premier service de REN}
+    \includegraphics[scale=0.38]{images/Concept-tagger.png}
+    \caption{Schéma fonctionnel du premier service de REN}
     \label{fig:premier-pipeline}
 \end{figure}
 \vspace{10pt}
 
-Les composants en vert sur le schéma correspondent à ceux créés pour le service. Les composants bleus et oranges sont fournis par la bibliothèque Stanford Core NLP. Les composants bleus ont été personnalisés. L'architecture du service se décompose en trois modules : 
+L'architecture du service se décompose en trois modules~: 
 \begin{itemize}
-    \item \textit{French-lemmatiser} : un module contenant la classe \textit{French-lemmatiser} et le dictionnaire de lemmes. C'est le composant associant à chaque token un lemme. La séparation du lemmatiseur en un seul module est un choix guidé par une exigence de modifiabilité du code. La méthode de génération de règles doit être valable pour plusieurs langues, et le lemmatiseur est un composant spécifique à la langue. C'est pourquoi séparer ce composant en en faisant un module permet de facilement passer d'une langue à l'autre.
+    \item \textit{French-lemmatiser} : un module contenant la classe \textit{French-lemmatiser} et le dictionnaire de lemmes. C'est le composant associant à chaque token un lemme. La séparation du lemmatiseur en un seul module est un choix guidé par une exigence d'adaptabilité du code. La méthode de génération de règles doit être valable pour plusieurs langues, et le lemmatiseur est un composant spécifique à la langue. C'est pourquoi séparer ce composant en en faisant un module permet de facilement passer d'une langue à une autre.
     \vspace{5pt}
     \item \textit{Tokensregex-builder} : il s'agit du générateur de règles, appelé «~ Tokensregex~» dans la bibliothèque Stanford Core NLP. Il prend en entrée une liste de groupes nominaux représentant des entités nommées et génère un fichier de règles au format spécifié par la bibliothèque. Elles sont générées en faisant tourner un pipeline Stanford Core NLP ayant les quatre composants décrits ci-dessus. Le composant \textit{Builder} prend en entrée les libellés annotés et donne en sortie des règles suivant ce schéma : 
     \vspace{10pt}
@@ -238,7 +242,7 @@ Les composants en vert sur le schéma correspondent à ceux créés pour le serv
     \newline
 \end{itemize}
 
-Les interfaces sont conçues dans un soucis de testabilité : un autre module de test vient compléter cette liste. Ce dernier assure simplement la communication avec les différentes bases de données pour obtenir les publications souhaitées et ainsi tester le pipeline. Un client PostgreSQL permet d'obtenir les métadonnées sur les publications (leurs type, la langue d'écriture, leurs identifiants, etc.), et permet d'obtenir les identifiants des publications que l'ont peut obtenir via un serveur HTTP. Ces deux clients nous donnent les publications au format XML, et le programme principal le même fichier enrichi de balises XML repérant les occurrences de concepts. Pour plus de lisibilité lors de la vérification des concepts matchés, le module de texte inclut une seconde transformation XSLT afin d'obtenir un rendu HTML.
+Les interfaces sont conçues dans un soucis de testabilité : un autre module de test vient compléter cette liste. Ce dernier assure simplement la communication avec les différentes bases de données pour obtenir les publications souhaitées et ainsi tester le pipeline. Un client PostgreSQL permet d'obtenir les métadonnées sur les publications (leurs type, la langue d'écriture, leurs identifiants, etc.), et permet d'obtenir les identifiants des publications que l'on peut obtenir via un serveur HTTP. Ces deux clients nous donnent les publications au format XML, et le programme principal le même fichier enrichi de balises XML repérant les occurrences de concepts. Pour plus de lisibilité lors de la vérification des concepts matchés, le module de texte inclut une seconde transformation XSLT afin d'obtenir un rendu HTML.
 \newline
 
 Mon pipeline de test se présente comme suit :
@@ -267,7 +271,7 @@ Deuxièmement, la tokenization est destructive : cette étape permet de découpe
 Troisièmement, les règles générées n'affichent parfois pas la bonne nature grammaticale des mots des libellés. Le \textit{Part-of-Speech tagging} utilise, pour déterminer la nature grammaticale d'un mot, tous les éléments de la phrase dans laquelle on le trouve. Cela explique les erreurs commises lorsque l'on ne soumet qu'un groupe nominal. En ajoutant une phrase donnant les éléments de contexte autour du concept avant de l'analyser, cela diminue fortement les erreurs.
 \newline
 
-Intégration des libelles alternatifs, reconnaissance de concepts géographiques, de dates, et correction du lemmatiseur : globalement, le pipeline est largement améliorable à l'heure actuelle. Mais le but est davantage ici d'explorer les possibilités de Stanford Core NLP directement sur les publications, et non de créer un service pérenne. De plus, des mises à jour récentes sur l'autre bibliothèque de TLN largement utilisée, \textbf{SpaCy}, pose la question du choix de bibliothèque.
+Intégration des libellés alternatifs, reconnaissance de concepts géographiques, de dates, et correction du lemmatiseur : globalement, le pipeline est largement améliorable à l'heure actuelle. Mais le but est davantage ici d'explorer les possibilités de Stanford Core NLP directement sur les publications, et non de créer un service pérenne. De plus, des mises à jour récentes sur l'autre bibliothèque de TLN largement utilisée, \textbf{SpaCy}, pose la question du choix de bibliothèque.
 \label{section 2.2.5}
 
 \subsection*{Conclusion}
