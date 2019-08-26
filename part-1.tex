@@ -99,7 +99,7 @@ Le SSP Lab, unité qui travaille sur l'utilisation de la Data science pour les s
     \vspace{5pt}
     \item \textbf{Thomas Dubois}~: Chef de projet statistique à l'unité qualité, incluse dans la Direction de la Méthodologie et de la Coordination Statistique et Internationale (DMCSI). Chef l'équipe en charge d'RMéS, il fournit un regard métier sur le projet.
     \vspace{5pt}
-    \item \textbf{L'équipe Web4g}~: En charge du site insee.fr, l'équipe Web4g me fournit des informations sur la structure des publications, ainsi qu'un accès à la base de données qui les référence.% TODO : décrire la DDAR
+    \item \textbf{L'équipe Web4g}~: En charge du site insee.fr, l'équipe Web4g me fournit des informations sur la structure des publications, ainsi qu'un accès à la base de données qui les référence. Elle dépend fonctionnellement de la Direction de la Diffusion et de l'Action Régionale (DDAR), qui gère notamment le site de l'Insee.
     \vspace{5pt}
     \item \textbf{Le SSP Lab}~: Laboratoire du service de statistique publique. Cette équipe travaille sur les nouvelles méthodes (Datasciences et Big Data), et suit les avancées de mon projet.
     \newline
@@ -142,10 +142,10 @@ La bibliothèque SpaCy propose une méthode de calcul de distance entre deux tex
 La tentative de hiérarchisation de la base consiste à utiliser cet outil sur les paires de concepts, pour obtenir une distance sémantique entre les deux concepts. On peut par exemple imaginer que, si l'on soumet les définitions des concepts «~Salaire~» et «~Salaire médian~» d'une part, et celles de «~Salaire~» et de «~Commerce de gros~» d'autre part, la première distance renvoyée sera normalement plus faible que la deuxième. Un rapide test me montre que c'est effectivement le cas. L'idée pour hiérarchiser la base est donc la suivante~: il s'agit d'appliquer un algorithme de \textit{Clustering} sur les concepts en utilisant la distance fournie par l'outil \textit{Similarity} de \textit{SpaCy}. Une définition de \textit{Clustering} est donnée en annexe page \pageref{clustering}. Après exécution de l'algorithme de \textit{Clustering}, on prend pour représentant de chaque cluster le concept du cluster étant le plus proche du barycentre du cluster. Ce barycentre est bien entendu pondéré par la distance sémantique des concepts.
 \newline
 
-Les premiers tests sont réalisés en fixant un seul paramètre de l'algorithme de clustering, appelé hyperparamètre~: le nombre de clusters à 200. J'ai établi cette valeur car beaucoup de concepts sur les 1162 sont censés être seuls dans leur cluster. Les principaux regroupements attendus sont ceux autour de concepts très généraux, comme par exemple le «~Salaire~», le «~Commerce~», ou encore la «~Commune~». Tous ces concepts ont en effet beaucoup de variantes plus spécifiques (entre cinq et dix) et l'on s'attend à ce qu'ils soient dans les même clusters.
+Les premiers tests sont réalisés en fixant un seul paramètre de l'algorithme de clustering, appelé hyperparamètre~: le nombre de clusters à 100. J'ai établi cette valeur car beaucoup de concepts sur les 1162 sont censés être seuls dans leur cluster. Les principaux regroupements attendus sont ceux autour de concepts très généraux, comme par exemple le «~Salaire~», le «~Commerce~», ou encore la «~Commune~». Tous ces concepts ont en effet beaucoup de variantes plus spécifiques (entre cinq et dix) et l'on s'attend à ce qu'ils soient dans les même clusters.
 \newline
 
-Les résultats sont peu probants~: en effet, quelle que soit l'implémentation (méthode d'agrégation de clusters notamment) et les hyperparamètres utilisés, on obtient toujours le même schéma de clusters, à savoir un grand cluster rassemblant entre 100 et 200 concepts, quelques clusters de taille moyenne (2-10 concepts) et quelques clusters contenant des concepts isolés. Globalement, on retrouve bien les groupements attendus~: les concepts relatifs au salaire sont tous dans le même cluster, de même que les entités géographiques ainsi que pour les concepts relatifs au commerce. L'inconvénient est qu'ils sont en général accompagnés par d'autres concepts, excepté pour les entités géographiques qui sont seules dans leur cluster.
+Les résultats sont peu probants~: en effet, quelle que soit l'implémentation (méthode d'agrégation de clusters notamment) et les hyperparamètres utilisés, on obtient toujours le même schéma de clusters, à savoir un ou deux grand cluster rassemblant entre 100 et 200 concepts, quelques clusters de taille moyenne (2-10 concepts) et quelques clusters contenant des concepts isolés. Globalement, on retrouve bien les groupements attendus~: les concepts relatifs au salaire sont tous dans le même cluster, de même que les entités géographiques ainsi que pour les concepts relatifs au commerce. L'inconvénient est qu'ils sont en général accompagnés par d'autres concepts, excepté pour les entités géographiques qui sont seules dans leur cluster. Voici quelques exemples de regroupements~:
 \newline
 
 % TODO : mettre des exemples.
@@ -194,10 +194,13 @@ Voici un exemple de publication au format XML~:
 Un exemple complet est donné en annexe page \pageref{publication-xml}.
 \newline
 
-Certaines collections sont destinées à un public éclairé, comme les documents de travail ou la collection «~Economie et Statistique~», et le langage utilisé y est assez technique et parfois très spécifique. Dans la plupart des publications, un langage grand public est utilisé, avec toutefois le vocabulaire de la statistique, qui est celui qui nous intéresse ici. Les publications contiennent parfois des liens hypertextes vers les définitions des concepts statistiques mentionnées. Ces concepts sont dans leur entièreté nommés par leur libelles exactes. Dans les cas ou ils ne contiennent pas de liens, le libellé est parfois incomplet ou enrichi par des adjectifs placés au milieu du libellé, rendant la reconnaissance plus ardue. Il y a quelques fois une ambiguïté sur le concept nommé, notamment pour ceux ayant des spécificités.
+Certaines collections sont destinées à un public éclairé, comme les documents de travail ou la collection «~Economie et Statistique~», et le langage utilisé y est assez technique et parfois très spécifique. Dans la plupart des publications, un langage grand public est utilisé, avec toutefois le vocabulaire de la statistique, qui est celui qui nous intéresse ici. Les publications contiennent parfois des liens hypertextes vers les définitions des concepts statistiques mentionnées. Ces concepts sont dans leur entièreté nommés par leur libelles exactes. Dans les cas ou ils ne contiennent pas de liens, le libellé est parfois incomplet ou enrichi par des adjectifs placés au milieu du libellé, rendant la reconnaissance plus ardue. Il y a quelques fois une ambiguïté sur le concept nommé, notamment pour ceux ayant des spécificités. Voilà quelques exemples de phrases faisant mention de certains concepts~:
+\begin{itemize}
+    \item «~En 2018, l'activité des \textbf{secteurs commerciaux} est contrastée. Dans le \textbf{commerce de gros}, les ventes restent toniques (+ 1,9 \% en volume comme en 2017), en particulier dans le \textbf{commerce de biens d'équipement et de biens domestiques}.~», Insee Première n 1759, 21/06/2019.
+    Commerce - Commerce de gros - Commerce.
+    % TODO compléter avec deux exemples
+\end{itemize}
 \label{section 1.2.2}
-
-% TODO : ajouter des exemples de phrases avec mentions de concepts.
 
 \subsection{La Data science à l'Insee}
 
@@ -206,6 +209,7 @@ L'Insee jouit d'une situation particulière dans le domaine du \textit{Big Data}
 
 L'institut dispose par ailleurs d'une légitimité et d'un droit d'exploitation des gisements de données de par son activité. Le Règlement Général sur la Protection des Données a contraint les entreprises à trouver d'autres moyens d'obtenir des données. Cela se traduit souvent par la génération en interne de données, parfois difficile.
 \newline
+% TODO : compléter avec les références juridiques, étoffer
 
 L'Insee dispose enfin de compétences de haut niveau dans le domaine des statistiques, domaine connexe à celui de la Data science. J'ai d'ailleurs pu obtenir des aides précieuses, notamment dans l'explication des concepts ou encore dans l'utilisation de certains algorithmes.
 \newline

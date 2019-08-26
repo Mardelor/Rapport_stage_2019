@@ -6,6 +6,26 @@ Le partitionnement de données (ou \textit{data clustering}) est une des méthod
 \newpage
 
 \subsection*{Annexe B - Résultats détaillés de la tentative de hierarchisation automatique du référentiel des métadonnées de l'Insee}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/hierarchisation-plot.png}
+    \caption{Moyenne du nombre de mots dans les définitions sur un cluster en fonction de sa taille}
+    \label{fig:hierarchisation}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Algorithme}~: \textit{Agglomerative Clustering}
+    \item \textbf{Hyperparamètres}~: 
+    \begin{itemize}
+        \item Nombre de clusters~: 100
+        \item Méthode d'agglomération~: \textit{complete} (minimise la distance entre les clusters)
+        \newline
+    \end{itemize}
+\end{itemize}
+
+On remarque assez nettement que les grands clusters sont composés principalement de concepts ayant des définitions longues, contrairement aux petits clusters où la longueur des définitions est plus variée. L'analyse de l'écart-type du nombre de mots par définitions pour les deux grands clusters confirme cette hypotèse, puisqu'ils sont respectivement de 21 mots pour le cluster de 117 concepts, et de 18 mots pour le cluster de 138 concepts.
+
 \label{hierarchisation}
 \newpage
 
@@ -110,8 +130,49 @@ Le partitionnement de données (ou \textit{data clustering}) est une des méthod
 \newpage
 
 \subsection*{Annexe D - Récapitualif et exemples de traitements}
-\label{nlp-exemple}
+
+Pharse d'exemple, tirée du \href{https://www.nytimes.com/2019/08/26/world/europe/g7-live-updates.html?action=click&module=Top\%20Stories&pgtype=Homepage}{New York Time} \cite{sent-ex}~:
+
+\textit{«~President Trump sounded a positive note after taking a call from Chinese officials, and said he had given his blessing to Iran’s foreign minister holding meetings in Biarritz.~»}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.50]{images/nlp-recap-1.png}
+    \caption{Récapitulatif des traitements NLP - \textit{POS}, \textit{Lemmatisation}, \textit{NER}}
+    \label{fig:nlp-recap-1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.50]{images/nlp-recap-2.png}
+    \caption{Récapitulatif des traitements NLP - \textit{Dependencies}, \textit{Open IE}, \textit{Coreference resolution}, \textit{Sentiment Analysis}}
+    \label{fig:my_label}
+\end{figure}
+
+Les exemples ont été donnés à partir de la \href{http://corenlp.run/}{démonstration en ligne} \cite{corenlp-demo} de Stanford Core NLP. Des \href{https://explosion.ai/demos/}{démonstrateurs pour SpaCy} \cite{spacy-demo} sont également disponibles.
 \newpage
 
 \subsection*{Annexe E - Exemple de règles de reconnaissance d'entités nommées}
+
+Exemples de règles pour le concept «~Salaire~».
+\subsubsection*{Stanford Core NLP}
+\begin{lstlisting}
+{ 
+    ruleType: "tokens", 
+    pattern: ([{tag:"NOUN"} & {lemma:"salaire"}][{tag:"ADJ"}]*), 
+    action: (Annotate(\$0, ner, "STAT-CPT"), 
+            Annotate(\$0, mention, "http://id.insee.fr/concepts/definition/c1211")), 
+    result: "STAT-CPT"
+}
+\end{lstlisting}
+
+\subsubsection*{SpaCy}
+\begin{lstlisting}
+{ 
+    "id": "c1211", 
+    "label": "STAT-CPT", 
+    "pattern": [{"POS": "NOUN", "lemma": "salaire"}, {"POS": "ADJ", "OP": "*"}] 
+}
+\end{lstlisting}
+
 \label{rule-exemple}

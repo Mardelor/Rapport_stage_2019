@@ -1,5 +1,5 @@
 \section{Bilan \& perspectives}
-Ce projet a finalement abouti à l'élaboration de deux services de reconnaissance d'entités nommées~: un premier prototype fonctionnel et un second service, plus industriel. Ils montrent tous les deux des résultats encourageants, et qui serviront tant aux rédacteurs des publications qu'à l'équipe en charge du référentiel des métadonnés statistiques. Cela m'a de plus permis de préciser mon projet professionnel, en explorant à la fois les thématiques de traitements de langage naturel, de développement web ainsi que la thématique DevOps.
+Ce projet a finalement abouti à l'élaboration de deux services de reconnaissance d'entités nommées~: un premier prototype fonctionnel et un second service, plus industriel. Ils montrent tous les deux des résultats encourageants, et qui serviront tant aux rédacteurs des publications qu'à l'équipe en charge du référentiel des métadonnés statistiques. Cela m'a de plus permis de préciser mon projet professionnel, en explorant à la fois les thématiques de traitements de langage naturel, de développement web ainsi que les outils DevOps.
 
 \subsection{Le livrables et les résultats actuels}
 Les livrables du projet, disponibles sur \href{https://github.com/Mardelor?tab=repositories}{Github}, sont au nombre de trois~: les deux services de REN et ce présent rapport.
@@ -8,7 +8,8 @@ Les livrables du projet, disponibles sur \href{https://github.com/Mardelor?tab=r
 Le premier service permet à ce jour de repérer les concepts de la base RMéS, et de générer un rendu XML et un rendu HTML d'une même publication. Un pipeline GitLab permet déjà de tester automatiquement le programme sur n'importe quelle publication figurant dans la base de données au format XML. Il donne une bonne vision de ce que l'on peut faire en TLN sur les publications de l'Insee, même s'il a quelques lacunes.
 \newline
 
-Une analyse du programme sur environ 650 publications, dont chacune fait trois à quatre pages, a été menée. Il s'agit de rechercher quels concepts sont repérés dans le corpus, sous quelles formes et à quelle fréquence. On constate que la moitié des concepts est repérée sur les 1162 qui sont présents dans la base RMéS. Pour une majorité d'entre eux, ils ne sont trouvés moins de dix fois dans le corpus. Pour les concepts généraux en revanche, comme «~salaire~», «~commerce~» ou «~productivité~», on retrouve plusieurs formes et avec un nombre d'occurrences allant de quelques dizaines à quelques centaines.
+Une analyse du programme sur environ 650 publications, dont chacune fait trois à quatre pages, a été menée. Il s'agit de rechercher quels concepts sont repérés dans le corpus, sous quelles formes et à quelle fréquence. On constate que 544 concepts, soit un peu moins de la moitié des 1162 présents dans la base RMéS sont repérés. Pour une majorité d'entre eux, ils ne sont trouvés moins de dix fois dans le corpus. Pour les concepts généraux en revanche, comme «~salaire~», «~commerce~» ou «~productivité~», on retrouve plusieurs formes et avec un nombre d'occurrences allant de quelques dizaines à quelques centaines.
+%TODO : Détailler, peut-être à mettre autre part.
 
 Il est difficile de déterminer si les concepts qui n'apparaissent pas ne sont tout simplement pas mentionnés ou si cela est dû aux lacunes du pipeline. Ce que l'on peut en conclure en revanche, c'est que les concepts généraux sont cités avec des formes diverses. Cela pointe le fait que certains concepts mériteraient peut-être d'avoir des sous-concepts, plus spécifiques.
 \newline
@@ -16,7 +17,7 @@ Il est difficile de déterminer si les concepts qui n'apparaissent pas ne sont t
 Le second service est plus abouti~: construit pour pouvoir être utilisé sur le Web, il ne permet cependant pas, à l'heure actuelle, d'effectuer les tests sur les publications. Il dispose en revanche d'une interface pour soumettre du texte au pipeline, et ainsi rapidement vérifier si un concept est reconnu dans un certain contexte. Cette interface inclut également l'affichage des dépendances, permettant de résoudre les dysfonctionnements plus rapidement. Il est également adressable en HTTP et peut fournir le résultat du pipeline en JSON. Je n'ai malheureusement pas eu le temps de mettre en place un pipeline GitLab. J'ai cependant créé une image Docker sur laquelle l'application peut s'exécuter.
 \newline
 
-Bien que je n'aie pas pu finaliser la seconde application, j'ai pris soin de laisser une documentation, afin que d'autres puissent faire aboutir le second service. 
+Bien que je n'aie pas pu finaliser la seconde application, j'ai pris soin de laisser une documentation, afin qu'il puisse être achevé. 
 
 \subsection{Perspectives d'améliorations}
 
