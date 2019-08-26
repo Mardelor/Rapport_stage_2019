@@ -128,23 +128,24 @@ Bien que le \autoref{tab:nlp-compare} montre un support multilingue des deux bib
 Pour notre cas d'application, on s'intéresse d'abord au français, puis à l'anglais et aux autres langues européennes. La bibliothèque offre pour ces dernières le traitement de REN, excepté pour le français. Les quatre traitements proposés ont toutefois un potentiel via l'utilisation des \textit{Tokensregex}.
 \newline
 
-Bien que le projet soit OpenSource et disponible sur \href{https://github.com/stanfordnlp/CoreNLP}{Github} \cite{corenlp-repo}, les contributions extérieures sont moins nombreuses que sur \href{https://github.com/explosion/spaCy}{SpaCy} \cite{spacy-repo}. Explosion AI encourage vivement les contributions extérieures, notamment en ce qui concerne la prise en charge d'autres langues. La bibliothèque propose à ce jour un large choix de modèles entraînés, avec parfois plusieurs modèles par langues~:
+Bien que le projet soit \textit{open source} et disponible sur \href{https://github.com/stanfordnlp/CoreNLP}{Github} \cite{corenlp-repo}, les contributions extérieures sont moins nombreuses que sur \href{https://github.com/explosion/spaCy}{SpaCy} \cite{spacy-repo}. Explosion AI encourage vivement les contributions extérieures, notamment en ce qui concerne la prise en charge d'autres langues. La bibliothèque propose à ce jour un large choix de modèles entraînés, avec parfois plusieurs modèles par langues~:
  \vspace{10pt}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.7]{images/spacy-lang.png}
-    \caption{Tableau récapitulatif des modèles disponibles pour SpaCy, tiré de la \href{https://spacy.io/usage/models}{documentation}} \cite{spacy-lang}
+    \caption{Tableau récapitulatif des modèles disponibles pour SpaCy, tiré de la \href{https://spacy.io/usage/models}{documentation} \cite{spacy-lang}}
     \label{fig:spacy-lang}
 \end{figure}
 \vspace{10pt}
 
-Toutes les langues listées ci-dessus proposent les traitements de SpaCy listés \autoref{tab:nlp-compare}. Pour le modèle multilingue (ML), il propose uniquement la REN pour l'anglais, l'allemand, l'espagnol, le français, l'italien, le portugais et le russe. D'autres modèles sont à l'étude et utilisables~: ils couvrent plus d'une vingtaine de langues d'Asie et d'Europe. Les ajouts de supports de langues et autres mises à jours sont assez fréquents sur SpaCy. La communauté autour de l'outil est très active et de nombreuses améliorations apparaissent petit à petit. Comme on peut le voir sur le \href{https://github.com/explosion/spaCy}{Github} \cite{spacy-repo} du projet, toutes les améliorations, idées d'améliorations et bugs sont publiés. J'ai notamment eu l'occasion de proposer une idée d'amélioration pour le format de sortie des données. Les personnes qui maintiennent la bibliothèque semblent très réactifs et à l'écoute de la communauté, ce qui facilite à la fois la visibilité de la bibliothèque et son ouverture aux autres langues. A titre d'exemple, Explosion AI sort actuellement une mise à jour tous les un à deux mois. À titre de comparaison, la dernière mise à jour de Stanford Core NLP date d'octobre 2018.
+Toutes les langues listées ci-dessus proposent les traitements de SpaCy listés \autoref{tab:nlp-compare}. Pour le modèle multilingue (ML), il propose uniquement la REN pour l'anglais, l'allemand, l'espagnol, le français, l'italien, le portugais et le russe. D'autres modèles sont à l'étude et utilisables~: ils couvrent plus d'une vingtaine de langues d'Asie et d'Europe. Les ajouts de supports de langues et autres mises à jours sont assez fréquents sur SpaCy. La communauté autour de l'outil est très active et de nombreuses améliorations apparaissent petit à petit. Comme on peut le voir sur le \href{https://github.com/explosion/spaCy}{Github} \cite{spacy-repo} du projet, toutes les améliorations, idées d'améliorations et bugs sont publiés. J'ai notamment eu l'occasion de proposer une idée d'amélioration pour le format de sortie des données. Les personnes qui maintiennent la bibliothèque semblent très réactifs et à l'écoute de la communauté, ce qui facilite à la fois la visibilité de la bibliothèque et son ouverture aux autres langues. Explosion AI sort actuellement une mise à jour tous les un à deux mois. À titre de comparaison, la dernière mise à jour de Stanford Core NLP date d'octobre 2018.
+\newline
+
+Les licences proposées par les deux bibliothèques sont également différentes. Celle de Stanford Core NLP est la Licence Publique Géneral \cite{gnu}, qui laisse la liberté d'exécuter, étudier et redistribuer des copies du logiciels à tous pour n'importe quel usage. Il oblige cependant les utilisateurs à publier les éventuels changements et améliorations apportés au logiciel. SpaCy est lui sous licence MIT \cite{mit}, licence standard donnant des libertés similaires à la licence GNU GPL. Elle donne à toute personne recevant le logiciel le droit illimité de l'utiliser, le copier, le modifier, le fusionner, le publier, le distribuer, le vendre et le «~sous-licencier~», c'est-à-dire le publier sous une autre licence. Les deux licences sont standards donnent des droits similaires, c'est pourquoi ce facteur n'est finalement pas déterminant pour le choix de la bibliothèque.
 \newline
 
 N'ayant pas une grande expertise sur le TLN et sur les autres langues en général, le bon choix, afin de profiter d'une communauté active et de nouvelles fonctionnalités fiables, semble être SpaCy. Il reste  à aborder l'aspect central du projet~: la construction d'un pipeline de reconnaissance d'entités nommées.
 \label{section 3.1.3}
-
-%TODO : ajouter quelque chose sur la licence
 
 \subsubsection{La REN dans les deux bibliothèques}
 Bien que le sujet soit déjà abordé dans la partie \ref{section 2.2.4} avec Core NLP, certains points concernant la REN, notamment avec SpaCy, restent à aborder. 
@@ -153,7 +154,7 @@ Bien que le sujet soit déjà abordé dans la partie \ref{section 2.2.4} avec Co
 SpaCy offre les mêmes fonctionnalités pour reconnaître ses propres entités nommées, à savoir la reconnaissance à base de règles et celle à base de réseaux de neurones. Pour les règles, SpaCy intègre un composant, \textit{EntityRuler}, qui permet de faire directement de la REN avec les règles, là où Core NLP est plus général avec les \textit{Tokensregex}. La syntaxe est plus simple avec SpaCy qui utilise un format standard (voir page \pageref{rule-exemple}).
 \newline
 
-La bibliothèque propose également deux modèles de REN, qui reconnaissent les entités de type personne, lieux, organisation et divers. Quelques rapides tests montrent que le modèle \textit{small} a ses limites, notamment sur le \textit{POS-tagging}, tandis que le modèle \textit{medium} reconnaît assez généralement les trois premiers types d'entités. Quasiment aucun concept statistique n'est reconnu en tant qu'entité diverse par le modèle. Un test a également été réalisé à partir d'un modèle de REN compatible avec Core NLP et entraîné par \href{http://lab.kbresearch.nl/static/html/eunews.html}{Europeana} \cite{europeana-ner}. % TODO : compléter
+La bibliothèque propose également deux modèles de REN, qui reconnaissent les entités de type personne, lieux, organisation et divers. Quelques rapides tests montrent que le modèle \textit{small} a ses limites, notamment sur le \textit{POS-tagging}, tandis que le modèle \textit{medium} reconnaît assez généralement les trois premiers types d'entités. Quasiment aucun concept statistique n'est reconnu en tant qu'entité diverse par le modèle. Un test a également été réalisé à partir d'un modèle de REN compatible avec Core NLP et entraîné par \href{http://lab.kbresearch.nl/static/html/eunews.html}{Europeana} \cite{europeana-ner}. Le constat est similaire avec ce modèle. Il repère les personnes, dates, lieux et organisations, mais aucun concept statistique en tant que concept divers (MISC).
 \newline
 
 Là encore, SpaCy semble plus adapté pour construire un service de reconnaissance d'entités nommées, sa simplicité d'utilisation et son efficacité étant nettement meilleure que ce qui est proposé par Core NLP. C'est donc assez naturellement que \textbf{SpaCy} a été choisi pour construire le service. 
@@ -233,8 +234,16 @@ J'ai pu grâce à Flask, mettre en place le web service en une journée~: créat
 \label{section 3.2.2 - Flask}
 
 \subsubsection*{React}
-Le choix pour l'interface utilisateur s'est finalement porté sur React. Framework Javascript le plus populaire actuellement, comme le montre cet article de \href{https://stackoverflow.blog/2018/01/11/brutal-lifecycle-javascript-frameworks/}{stackoverflow} \cite{stackoverflow-javascript}, il permet de créer une interface utilisateur sous forme de composants. Utilisant un DOM virtuel, \textit{Document Object Model}, il permet d'intégrer des composants complexes dans une interface, et ce de façon dynamique. Développer une interface consiste donc simplement à placer des composants et à créer les fonctions définissant les comportements spécifiques au cas d'usage. De nombreuses bibliothèques de composants React existent à ce jour (\textbf{Material-UI}, \textbf{React-bootstrap}, \textbf{React toolbox}, etc.), offrant toutes sortes de boutons, menus et éléments d'interactions. N'ayant jamais développé de projet en Javascript, cela m'a permis en très peu de temps de faire une petite interface pour un projet associatif.
-% TODO : trouver une meilleure ref pour React.
+Le choix pour l'interface utilisateur s'est finalement porté sur React. Framework Javascript le plus populaire actuellement comme le montre la \autoref{fig:js-compare}, il permet de créer une interface utilisateur sous forme de composants.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/js-frameworks.png}
+    \caption{Schéma comparatif de la popularité des frameworks Javascript - Réalisé à partir de \cite{stackoverflow-trend}}
+    \label{fig:js-compare}
+\end{figure}
+
+Utilisant un DOM virtuel, \textit{Document Object Model}, il permet d'intégrer des composants complexes dans une interface, et ce de façon dynamique. Développer une interface consiste donc simplement à placer des composants et à créer les fonctions définissant les comportements spécifiques au cas d'usage. De nombreuses bibliothèques de composants React existent à ce jour (\textbf{Material-UI}, \textbf{React-bootstrap}, \textbf{React toolbox}, etc.), offrant toutes sortes de boutons, menus et éléments d'interactions. N'ayant jamais développé de projet en Javascript, cela m'a permis en très peu de temps de faire une petite interface pour un projet associatif.
 \newline
 
 J'ai cependant manqué de temps pour obtenir une interface fonctionnelle, que ce soit pour mon projet associatif ou pour l'interface utilisateur. Bien que Javascript soit assez accessible pour quelqu'un ayant développé dans d'autres langages, le framework React nécessite une connaissance approfondie du développement \textit{Front-end}~: gestion du cache, appels asynchrones à une API ou encore découpage de l'application en composants, il me reste encore beaucoup de choses à apprendre sur \textbf{React} pour être efficace sur le développement d'une interface utilisateur. Ne disposant pas du temps suffisant pour développer l'interface, et dans la mesure où l'Insee dispose d'agents maîtrisant le framework, je me suis donc contenté de laisser les spécifications.
